@@ -1,0 +1,130 @@
+\documentclass[a4paper,12pt,oneside,openany,uplatex]{jsbook}
+
+\usepackage[papersize={210truemm, 297truemm}]{geometry}
+\geometry{top=40truemm,bottom=35truemm,left=25truemm,right=25truemm}
+%
+\usepackage[utf8]{inputenc}
+\usepackage{booktabs}
+\usepackage{url}
+\usepackage{nidanfloat}
+\usepackage{afterpage}
+\usepackage{setspace}
+\usepackage{multirow}
+\usepackage{here}
+
+\usepackage{amsmath,amssymb}
+\usepackage{bm}
+%\usepackage{graphicx}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{subfigure}
+\usepackage{verbatim}
+\usepackage{wrapfig}
+\usepackage{ascmac}
+
+\usepackage{algorithm}
+\usepackage{algorithmic}
+%
+\setcounter{tocdepth}{3}
+%
+%余白設定
+\setlength{\textwidth}{\fullwidth}
+\setlength{\textheight}{35\baselineskip}
+\addtolength{\textheight}{\topskip}
+\setlength{\voffset}{-0.55in}
+\setlength{\abovedisplayskip}{2.5pt} % 上部のマージン
+\setlength{\belowdisplayskip}{2pt} % 下部のマージン
+%
+\newcommand{\etal}{\textit{et al}.,}
+\newcommand{\ie}{\textit{i}.\textit{e}.,}
+\newcommand{\eg}{\textit{e}.\textit{g}.,}
+\newcommand{\reffig}[1]{図\ref{#1}}
+\newcommand{\reftab}[1]{表\ref{#1}}
+\newcommand{\refequ}[1]{式\ref{#1}}
+\newcommand{\refsec}[1]{\ref{#1}節}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\title{タイトル}
+%\author{氏名}
+%\date{\today}
+\begin{document}
+%
+%\maketitle
+%
+\frontmatter
+%表紙
+\begin{titlepage}
+  \vspace*{7mm}
+  \begin{center}
+    \Large{平成31年度卒業論文}\\
+
+    \vspace{40truemm}
+
+    \LARGE{\textbf{画像付きフェイクニュースとジョークニュースの\\検出・分類に向けた機械学習モデルの検討}}\\
+
+    \vspace{30truemm}
+
+    \Large{電気通信大学 情報理工学部 総合情報学科}\\
+    \Large{メディア情報学コース}\\
+
+    \vspace{15truemm}
+
+    \begin{table*}[h]
+        \centering
+        \hspace*{4em}
+        \begin{tabular}{rcl}
+            \large{学籍番号}&\large{:}&\large{1510151} \\
+            \large{氏名}&\large{:}&\large{栁 裕太} \vspace{5truemm} \\
+            \large{主任指導教員}&\large{:}&\large{田原 康之 准教授} \vspace{5truemm} \\
+            \large{指導教員}&\large{:}&\large{大須賀 昭彦 教授} \vspace{5truemm} \\
+            \large{指導教員}&\large{:}&\large{清 雄一 准教授} \vspace{5truemm} \\
+            \large{提出年月日}&\large{:}&\large{平成31年2月8日(金)} \\
+        \end{tabular}
+    \end{table*}
+  \end{center}
+\end{titlepage}
+%
+%アブスト
+\addcontentsline{toc}{chapter}{概要}
+
+\include{./chapters/abstract}
+\tableofcontents
+%
+\mainmatter
+%本文
+\include{./chapters/introduction}
+\include{./chapters/methology}
+\include{./chapters/experiment}
+\include{./chapters/evaluation}
+\include{./chapters/conclusion}
+
+%謝辞
+\include{./chapters/thanks}
+
+%参考文献
+\newpage
+% \bibliographystyle{plain}
+% \bibliography{./chapters/ref/ref}
+%\bibliography{reference_slim}
+%\bibliographystyle{plain}
+
+\begin{thebibliography} {*}
+%\bibitem{sibata} 柴田雅博，冨浦洋一，西口友美， 
+%\textit{雑談自由対話を実現するためのWWW 上の文書からの妥当な候補文選択手法}
+%	,人工知能学会論文誌，vol.24, no.6, pp.507-519, 2009.
+
+%\bibitem{sugeo} LeFevre, K., DeWitt, D. and Ramakrishnan, R., 
+%\textit{Mondrian Multidimensional K - Anonymity}
+%	, Proc. IEEE ICDE, pp. 25 - 25, 2006.
+
+\bibitem[]{eann} Wang, Yaqing, et al.
+"EANN: Event Adversarial Neural Networks for Multi-Modal Fake News Detection."
+Proceedings of the 24th ACM SIGKDD International Conference on Knowledge Discovery \& Data Mining. ACM, 2018.
+
+\end{thebibliography}
+
+%付録
+%\include{./chapters/appendix}
+
+%
+%
+\end{document}
