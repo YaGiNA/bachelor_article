@@ -7,11 +7,11 @@
 % 最後に，詳細なアルゴリズムフローを付加する． 
 今回提案したモデルは，以下の図\ref{fig:model}の通りとなっている．
 
-提案モデルの目的は，画像とテキストで発信された情報に対して，
+提案モデルの目的は，画像と文章で発信された情報に対して，
 正しいニュースか・フェイクニュースか・ジョークニュースかを分類するために，
 必要な特徴表現を学習することである．
 提案モデルは複合特徴量生成器とニュース分類器の大きく2部分に分けることができる．
-まず複合特徴量生成器は，今回扱う情報がテキストと画像を含むため，
+まず複合特徴量生成器は，今回扱う情報が文章と画像を含むため，
 各メディアに対して特徴化する生成器がある．
 その後それぞれの特徴を1つに連結し，複合特徴となる．
 複合特徴はニュース分類器に送られ，最終的には3カテゴリのどれに該当するかが判断される．
@@ -19,14 +19,30 @@
 \begin{figure}[h]
     \centering
     \includegraphics[width=\linewidth]{images/methodology.pdf}
-    \caption{提案モデル図．青色がテキスト特徴量生成器，橙色が画像特徴生成器，紫色がニュース分類器である．}
+    \caption{提案モデル図．青色が文章特徴量生成器，橙色が画像特徴生成器，紫色がニュース分類器である．Wangらの研究\cite{wang2018eann}を参考に作成．}
     \label{fig:model}
 \end{figure}
-
 %
 \section{複合特徴生成器}
 %
-
+\subsection{文章特徴}
+文章特徴は，入力に英語の投稿をスペース毎に分割した英単語の連続リストをもつ．
+まずは単語を単語埋め込みでベクトル化する．
+その後単語の羅列から分類に有効な情報を得るために，文章特徴を生成する核としてCNN
+(convolutional neural networks: 畳み込みニューラルネットワーク)を採用している．
+CNNはコンピュータビジョンやテキスト分類などの多くの分野で効果的であることが示されている
+\cite{collobert2011natural,kalchbrenner2014convolutional}.
+図\ref{fig:model}の通り，提案手法ではCNNの発展形であるテキストCNN(Text-CNN)\cite{kim2014convolutional}を採用している．
+テキストCNNの構造は図\ref{fig:text-cnn}の通りである．
+複数のウィンドウで畳み込むことで，様々な角度から特徴を抽出することを実現している．
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{images/text-cnn.pdf}
+    \caption{テキストCNNの図．Wangらの研究\cite{wang2018eann}を参考に作成．}
+    \label{fig:text-cnn}
+\end{figure}
+%
+\subsection{画像特徴}
 %
 \section{ニュース分類器}
 %
