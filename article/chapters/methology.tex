@@ -16,7 +16,7 @@
 その後それぞれの特徴を1つに連結し，複合特徴となる．
 複合特徴はニュース分類器に送られ，最終的には3カテゴリのどれに該当するかが判断される．
 % 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{images/methodology.pdf}
     \caption{提案モデル図．青色が文章特徴量生成器，橙色が画像特徴生成器，紫色がニュース分類器である．}
@@ -35,7 +35,7 @@ CNNはコンピュータビジョンやテキスト分類などの多くの分�
 図\ref{fig:model}の通り，提案手法ではCNNの発展形であるテキストCNN(Text-CNN)\cite{kim2014convolutional}を採用している．
 テキストCNNの構造は図\ref{fig:text-cnn}の通りである．
 複数のウィンドウで畳み込むことで，様々な角度から特徴を抽出することを実現している．
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{images/text-cnn.pdf}
     \caption{テキストCNNの図．Wangらの研究\cite{wang2018eann}を参考に作成．}
