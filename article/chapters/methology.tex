@@ -31,21 +31,21 @@
 その後単語の羅列から分類に有効な情報を得るために，文章特徴を生成する核としてCNN
 (convolutional neural networks: 畳み込みニューラルネットワーク)を採用した．
 CNNはコンピュータビジョンやテキスト分類などの多くの分野で効果的であることが示されていた
-\cite{collobert2011natural,kalchbrenner2014convolutional}.
-図\ref{fig:model}の通り，提案手法ではCNNの発展形であるテキストCNN(Text-CNN)\cite{kim2014convolutional}を採用した．
+\cite{collobert2011natural,KalchbrennerACL2014}.
+図\ref{fig:model}の通り，提案手法ではCNNの発展形であるテキストCNN(Text-CNN)\cite{DBLP:journals/corr/Kim14f}を採用した．
 テキストCNNの構造は図\ref{fig:text-cnn}の通りである．
 複数のウィンドウで畳み込むことで，様々な角度から特徴を抽出することを実現した．
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{images/text-cnn.pdf}
-    \caption{テキストCNNの図．Wangらの研究\cite{wang2018eann}を参考に作成．}
+    \caption{テキストCNNの図．Wangらの研究\cite{Wang:2018:EEA:3219819.3219903}を参考に作成．}
     \label{fig:text-cnn}
 \end{figure}
 
-具体的な手法では，EANNが採用したテキストCNNと全く同じ流れを採用した\cite{wang2018eann}.
+具体的な手法では，EANNが採用したテキストCNNと全く同じ流れを採用した\cite{Wang:2018:EEA:3219819.3219903}.
 %
 \subsection{画像特徴}
-画像から効率的に特徴を生成するために，当研究では事前学習済みのVGG-19\cite{simonyan2014very}を起用した．
+画像から効率的に特徴を生成するために，当研究では事前学習済みのVGG-19\cite{DBLP:journals/corr/SimonyanZ14a}を起用した．
 VGG-19は畳み込み13層と全結合層3層から形成され，最終的には1000次元の特徴ベクトルが出力された．
 当研究では最終の全結合層のみ改変し，文章特徴のベクトル次元数と同じ数の次元をもつベクトルを出力されるようにした．
 また改変した最終全結合層以外は，過学習を防ぐために事前学習の状態を維持することにした．
