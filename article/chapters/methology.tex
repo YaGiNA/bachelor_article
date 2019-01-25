@@ -43,6 +43,44 @@ CNNはコンピュータビジョンやテキスト分類などの多くの分�
 \end{figure}
 
 具体的な手法では，EANNが採用したテキストCNNと全く同じ流れを採用した\cite{Wang:2018:EEA:3219819.3219903}.
+今回使用した文章特徴生成器の理論式を以下に引用する．
+投稿の$i$番目の単語を$k$次元の単語埋め込みに変換する際に生成された単語埋め込みベクトルを$T_i \in \mathbb{R}^k$とする．
+このとき，$n$単語から生成された投稿は以下の式\ref{eq:concat_emb}で表現ができる．
+\begin{equation}
+    \label{eq:concat_emb}
+    T_{1:n} = T_1 \oplus T_2 \oplus \ldots \oplus T_n,
+\end{equation}
+$\oplus$はベクトルを連結(concatenation)することを意味する記号である．
+ここで単語埋め込み化された投稿は，畳み込み層へ送られる．
+畳み込み層では$h$単語分のウィンドウサイズがある．
+これは単語埋め込み化された投稿から連続して取り出す単語埋め込みベクトルの数を意味する．
+$i$番目を基準に$h$単語分取り出された場合，フィルタ時の処理は以下の式\ref{eq:filter}の通りである．
+\begin{equation}
+    \label{eq:filter}
+    t_i = \sigma(W_c \cdot T_{i:i+h-1}).
+\end{equation}
+この$\sigma(\cdot)$は活性化関数の1つであるReLU(ランプ関数)を表し，$W_c$はフィルタの重みを意味する．
+式\ref{eq:filter}が投稿内で適用されると，式\ref{eq:feature}の通り1つの発言に対し1つの特徴ベクトルが得られる．
+\begin{equation}
+    \label{eq:feature}
+    t = [t_1, t_2, \ldots, t_{n-h+1}].
+\end{equation}
+この$t$ベクトルに対して最も重要な特徴を得るために，ベクトル内で最大値の要素のみを取り出すmax-poolingが行われる．
+
+これで1つのウィンドウサイズから1つの特徴が得られるが，
+多くの粒度の特徴を得るために当手法では複数のウィンドウサイズから複数の値を取得している．
+特定のウィンドウサイズに着目すると，$n_h$分異なるフィルタが存在することになる．
+もし使用可能なウィンドウサイズが$c$存在する場合，全体で$c \cdot n_h$だけフィルタが存在することとなる．
+投稿から各ウィンドウサイズでmax-poolingまでされた文章特徴は$R_{T_c} \in \mathbb{R}^{c \cdot n_h}$と表現できる．
+
+max-poolingを終えた文章特徴は結合層に渡され，
+最終的に式\ref{eq:image-fc}によって
+画像特徴生成器が出力する特徴ベクトルの次元($p$とする)に合わせたテキスト特徴$R_T \in \mathbb{R}^p$となる．
+\begin{equation}
+    \label{eq:image-fc}
+    R_T = \sigma(W_{tf} \cdot R_{t_c}).
+\end{equation}
+ここで$W_{tf}$は全結合層における重みを意味する．
 %
 \subsection{画像特徴}
 画像から効率的に特徴を生成するために，当研究では事前学習済みのVGG19\cite{DBLP:journals/corr/SimonyanZ14a}を起用した．
