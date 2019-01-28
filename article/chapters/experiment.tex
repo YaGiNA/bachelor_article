@@ -21,26 +21,6 @@ Boididouらの研究\cite{boididou2015verifying}によって提案されたTwitt
 Imageは全投稿で使用された画像を対象とし，同じ画像に対して複数の文章投稿があった場合は1件として数えることにした．
 % 
 \section{実験条件}
-\subsection{使用データ統計}
-上記の条件を踏まえ，提案手法・Text・Imageが扱う3カテゴリの投稿件数は以下の表\ref{table:posts}の通りである．
-Textが使用するデータは提案手法が扱うデータから画像を削除したものであるため，提案手法と全く同じ件数になった．
-Imageは，同じ画像に対して複数の投稿があったため，他2手法と比べて非常に少なくなっている．
-
-\begin{table}[h]
-    \caption{提案手法と比較対象手法が扱うカテゴリ毎の投稿数}
-    \label{table:posts}
-    \centering
-    \begin{tabular}{clll}
-        \hline
-        手法 & Real & Fake & Humor \\
-        \hline \hline
-        Text & 3021 & 4233 & 1509 \\
-        Image & 172 & 157 & 82 \\
-        提案手法 & 3021 & 4233 & 1509 \\
-        \hline
-    \end{tabular}
-\end{table}
-
 %
 \subsection{モデル条件}
 \subsubsection{Text}
@@ -68,6 +48,26 @@ Google Newsデータセットから事前学習済みのword2vecモデル\cite{g
 画像・文章の特徴を結合するため，ニュース分類器に渡されるのは600次元のベクトルであった．
 それにあわせ，隠れ層のユニット数も600とした．
 %
+\subsection{使用データ統計}
+上記の条件を踏まえ，提案手法・Text・Imageが扱う3カテゴリの投稿件数は以下の表\ref{table:posts}の通りである．
+Textが使用するデータは提案手法が扱うデータから画像を削除したものであるため，提案手法と全く同じ件数になった．
+Imageは，同じ画像に対して複数の投稿があったため，他2手法と比べて非常に少なくなっている．
+
+\begin{table}[h]
+    \caption{提案手法と比較対象手法が扱うカテゴリ毎の投稿数}
+    \label{table:posts}
+    \centering
+    \begin{tabular}{clll}
+        \hline
+        手法 & Real & Fake & Humor \\
+        \hline \hline
+        Text & 3021 & 4233 & 1509 \\
+        Image & 172 & 157 & 82 \\
+        提案手法 & 3021 & 4233 & 1509 \\
+        \hline
+    \end{tabular}
+\end{table}
+
 \subsection{評価指標}
 評価指標では，Precision(精度), Recall(再現率), F値(左2値の調和平均)を使用することにした．
 算出する方法上各カテゴリ毎に上記指標があるが，今回使用するデータセットでは極端にカテゴリが偏っていないので，
