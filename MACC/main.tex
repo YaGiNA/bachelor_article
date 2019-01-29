@@ -1,4 +1,4 @@
-\documentclass[a4paper,12pt,oneside,openany,uplatex]{jsbook}
+\documentclass[a4paper,12pt,oneside,openany,uplatex]{jsreport}
 \usepackage{biblatex}
 \addbibresource{./reference.bib}
 \usepackage[papersize={210truemm, 297truemm}]{geometry}
@@ -51,7 +51,6 @@
 %
 %\maketitle
 %
-\frontmatter
 %表紙
 \begin{titlepage}
   \vspace*{7mm}
@@ -85,11 +84,9 @@
 \end{titlepage}
 %
 %アブスト
-
 \include{./chapters/abstract}
 \tableofcontents
 %
-\mainmatter{}
 %本文
 \include{chapters/introduction}
 \include{chapters/related_reseaches}
