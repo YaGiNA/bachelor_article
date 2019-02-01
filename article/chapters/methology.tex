@@ -1,5 +1,5 @@
 %
-\chapter{提案手法}
+\chapter{提案手法}\label{ch:methodology}
 %
 \section{モデル概観}
 この章では，提案モデルがもつ複合特徴量抽出器とニュース分類器について紹介する．
@@ -42,7 +42,7 @@ CNNはコンピュータビジョンやテキスト分類などの多くの分�
     \label{fig:text-cnn}
 \end{figure}
 
-具体的な手法では，EANNが採用したテキストCNN同じ流れを汲み\cite{Wang:2018:EEA:3219819.3219903},
+具体的な手法では，EANNが採用したテキストCNNと同じ流れを汲み\cite{Wang:2018:EEA:3219819.3219903},
 最終の全結合層の隠れ層に独自にdropoutを採用した形をとった．
 今回使用した文章特徴抽出器の理論式を以下に引用する．
 
@@ -90,7 +90,7 @@ dropoutはHintonらによって提案された手法\cite{JMLR:v15:srivastava14a
 \subsection{画像特徴}
 画像から効率的に特徴を抽出するために，当研究では事前学習済みのVGG19\cite{DBLP:journals/corr/SimonyanZ14a}を起用した．
 VGG19は畳み込み16層と全結合層3層から形成され，最終的には1000次元の特徴ベクトルが出力される．
-当研究では最終の全結合層のみ改変し，文章特徴のベクトル次元数と同じ数の次元をもつベクトルを出力されるようにした．
+当研究では最終の全結合層のみ改変し，文章特徴のベクトル次元数と同じ数の次元をもつベクトルを出力するようにした．
 また改変した最終全結合層以外は，過学習を防ぐために事前学習の状態を維持することにした．
 以下に，一部を改変したVGG19を利用したモデルの理論式を記す．
 第\ref{subsec:text}節で記したように，最終的な特徴ベクトルの次元数は$p$とする．
@@ -113,7 +113,7 @@ $R_{V_{\rm VGGfc18}}$はVGG19の第18層である全結合層が出力した$1 \
     \label{eq:concat_feature}
     R_F = R_T \oplus R_V \in \mathbb{R}^{2p}.
 \end{equation}
-この先，複合特徴抽出器全体を表現するときは$G_f(M; \theta_f)$と表現することにする．
+以降においては，複合特徴抽出器全体を表現するときは$G_f(M; \theta_f)$と表現することにする．
 $M$は複合特徴抽出器へ入力される投稿，$\theta_f$は学習対象となるパラメータを意味する．
 %
 \section{ニュース分類器}
@@ -135,7 +135,7 @@ $m_i$がフェイクニュースもしくはジョークニュースである確
     \label{eq:cross_entropy}
     L_d(\theta_f, \theta_d) = -\mathbb{E}{(m,y)~(M, Y_d)}[y\log P_\theta(m) + (1-y)\log (1-P_\theta(m))].
 \end{equation}
-このあと，当研究がベースとしたWangらの研究では確率的勾配降下法(SGD: Stochastic Gradient Descent)
+最後に，当研究がベースとしたWangらの研究では確率的勾配降下法(SGD: Stochastic Gradient Descent)
 によってパラメータを更新していたが，
 当研究では2015年にDiederik P. Kingmaらが提唱したAdamという手法\cite{DBLP:journals/corr/KingmaB14}
 を用いてパラメータを更新することにした．
