@@ -1,4 +1,4 @@
-\chapter{研究目的}
+\chapter{研究目的}\label{ch:purpose}
 %
 \section{分類対象}
 今回対象とする情報は，SNS上で投稿された画像つきで発信されたニュースである．
@@ -7,33 +7,40 @@
 
 \begin{figure}[ht]
     \centering
-    \begin{subfigure}[b]{0.45\textwidth}
-        \includegraphics[width=\linewidth]{images/real_example.jpg}
-        \caption{Recovering From Sandy: Breezy Point, Queens; Santiago, Cuba}
+    \begin{subfigure}[b]{0.4\textwidth}
+        \includegraphics[height=5cm]{images/real_example_boston.jpg}
+        \caption{Boston RIC released this flier showing at large suspect Dzhokhar Tsarnaev. He may be armed \& dangerous}
         \label{fig:real}
     \end{subfigure}
     \hfill % separation between the subfigures
-    \begin{subfigure}[b]{0.45\textwidth}
-        \includegraphics[width=\linewidth]{images/fake_example.jpg}
-        \caption{New York gonna be screwed \#sandy \#hurricane \#newyork \#fucked}
-        \label{fig:fake}
+    \begin{subfigure}[b]{0.57\textwidth}
+        \includegraphics[height=5cm]{images/humor_example_boston.jpg}
+        \caption{The detail of these photos used to identify the Boston Marathon bombing suspect is bananas…}
+        \label{fig:humor}
     \end{subfigure}
     \bigskip 
     \centering
-    \begin{subfigure}[b]{0.45\textwidth}
-        \includegraphics[width=\linewidth]{images/humor_example.jpg}
-        \caption{Britain's last hurricane was devastating...}
-        \label{fig:humor}
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{images/fake_example_boston.jpg}
+        \caption{Reddit is on to something... Boston Bomber \#2 sure looks like missing student Sunil Tripathi. }
+        \label{fig:fake}
     \end{subfigure}
-    \caption{当研究で扱う3カテゴリの投稿例: (a)正しいニュース，(b)フェイクニュース，(c)ジョークニュース}
+    \caption{当研究で扱う3カテゴリの投稿例: (a)正しいニュース，(b)ジョークニュース，(c)フェイクニュース}
     \label{fig:examples}
 \end{figure}
 
-いずれも2012年に発生したハリケーン・サンディに関してTwitter上で投稿されたものであった．
-図\ref{fig:real}では被害を免れた聖母マリア像を写したもので，実際にキューバで撮影されたものであった．
-図\ref{fig:fake}ではニューヨークを撮った写真のように見えるが，
-元々は2004年に撮影された写真に自由の女神を合成させた写真であった点が指摘された\cite{harmanci_2012}.
-図\ref{fig:humor}ではハリケーン・サンディに関連してイギリスにハリケーンが来ないことを茶化すものである．
+いずれも2013年に発生したボストンマラソン爆弾テロ事件に関してTwitter上で投稿されたものであった．
+図\ref{fig:real}は実際にボストン市傘下組織が作成した被疑者の情報をChicago Sun-TimesがTwitterに投稿したもの，
+図\ref{fig:humor}はテロ後にRedditや4chanの有志によって実行犯の調査が行われた件に対して
+``bananas''と茶化すような言葉を投げかけているもの，
+図\ref{fig:fake}は実際に上記掲示板上で実行犯の調査が行われた結果，
+全くの別人を槍玉に挙げているものである．
+
+実際に，ボストンマラソン後ではインターネット上で盛んに犯人探しが行われた結果，
+事件前に行方不明になっていたスニル・トリパティ（Sunil Tripathi）さんが犯人として扱われ，
+更にその後一般報道メディアによってトリパティさんの家族に取材が行われるなど，
+フェイクニュースが実害として現実になった\cite{gray_2013}.
+これを受け，Redditでは実際に犯人探しの過熱で無関係の個人とその家族に迷惑をかけたとして謝罪した\cite{laird_2013}.
 
 %
 \section{達成目標}
