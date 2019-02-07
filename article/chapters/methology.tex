@@ -133,7 +133,7 @@ $m_i$がフェイクニュースもしくはジョークニュースである確
 そのため正解ラベルとして$Y_d$を使用して，以下の式によってクロスエントロピー誤差を損失として算出する．
 \begin{equation}
     \label{eq:cross_entropy}
-    L_d(\theta_f, \theta_d) = -\mathbb{E}{(m,y)~(M, Y_d)}[y\log P_\theta(m) + (1-y)\log (1-P_\theta(m))].
+    L_d(\theta_f, \theta_d) = -\mathbb{E}_{(m,y)\sim(M, Y_{d})}\biggl[\sum_{k=0}^{2} {y_k\log{P_\theta(m)}}\biggr].
 \end{equation}
 最後に，当研究がベースとしたWangらの研究では確率的勾配降下法(SGD: Stochastic Gradient Descent)
 によってパラメータを更新していたが，
