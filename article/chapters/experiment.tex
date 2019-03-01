@@ -5,7 +5,7 @@
 今回の実験での訓練データセットでは，
 Boididouらの研究\cite{boididou2015verifying}によって提案されたTwitter投稿データセットを使用した．
 こちらもTwitter上でフェイクニュースを検出するために作られたデータセットであるが，
-付加されたラベルとしてReal, Fake, そしてHumorがあり，
+付加されたラベルとしてReal, Fake, そしてHumor(Jokeにあたる)があり，
 ジョークニュースを含めた3カテゴリ分類に適したものとなっているため，当研究で採用した．
 データセットでは訓練用と検証用として2部に分かれていたが，
 当研究では訓練用とされた部分を対象に10分割交差検定することにした．
@@ -60,7 +60,7 @@ Imageは，同じ画像に対して複数の投稿があったため，他2手�
     \centering
     \begin{tabular}{clll}
         \hline
-        手法 & Real & Fake & Humor \\
+        手法 & Real & Fake & Joke \\
         \hline \hline
         Text & 3021 & 4233 & 1509 \\
         Image & 172 & 157 & 82 \\
