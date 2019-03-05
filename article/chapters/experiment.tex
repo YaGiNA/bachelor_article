@@ -16,20 +16,20 @@ Boididouらの研究\cite{boididou2015verifying}によって提案されたTwitt
 \section{比較対象手法}
 今回，画像つき文章投稿を3カテゴリに分類する提案手法の有効性を調べるために2種類の比較対象手法を用意した．
 1つは文章のみで投稿を分類する手法(以降，Textと表記)，もう1つは画像のみで投稿を分類する手法(以降，Imageと表記)であった．
-いずれも上記提案手法から文章・画像特徴抽出器を除外したモデルを使用した．
+いずれも上記提案手法から文章・画像特徴抽出器を除外した手法を使用した．
 またTextは入力データを提案手法が使用したデータセットから画像を削除したものを使用した．
 Imageは全投稿で使用された画像を対象とし，同じ画像に対して複数の文章投稿があった場合は1件として数えることにした．
 % 
 \section{実験条件}
 %
-\subsection{モデル条件}
+\subsection{手法条件}
 \subsubsection{Text}
-モデルに入力する前に，単語埋め込みへの変換の事前処理として，スムーズに単語埋め込みに変換できるようにするために，
+手法に入力する前に，単語埋め込みへの変換の事前処理として，スムーズに単語埋め込みに変換できるようにするために，
 投稿からハッシュタグ(\#)のような記号を除去し，全ての大文字を小文字に変換してスペースで分割した．
 投稿から分割された各単語を単語埋め込みに変換する際は，
-Google Newsデータセットから事前学習済みのword2vecモデル\cite{google_2013}を使用した．
-このモデルでは，各単語を300次元のベクトルに変換するものであった．
-ここでwod2vecモデルに該当しない単語が出現した場合，\texttt{<unknown>}としてseed値固定ランダムベクトルを生成することにした．
+Google Newsデータセットから事前学習済みのword2vec手法\cite{google_2013}を使用した．
+この手法では，各単語を300次元のベクトルに変換するものであった．
+ここでwod2vec手法に該当しない単語が出現した場合，\texttt{<unknown>}としてseed値固定ランダムベクトルを生成することにした．
 また，投稿の全単語中50\%以上が\texttt{<unknown>}の場合，実態に則さない学習を避けるために学習対象から外すことにした．
 その後テキストCNNに送られ，1つの文章に対して1つの300次元の特徴ベクトルが抽出され，ニュース分類器に渡す形となった．
 なお，ウィンドウサイズは2-5までの4種類を用意し，全結合層の隠れ層は1つ用意し，ユニット数は300とした．
@@ -38,8 +38,8 @@ Google Newsデータセットから事前学習済みのword2vecモデル\cite{g
 検証にあたり最大エポック数は100とし，過学習の兆しが見えたら学習を打ち切るEarly stoppingも導入した．
 %
 \subsubsection{Image}
-モデルの複雑化を避けるため，1つの投稿に複数枚画像が付加されていた場合は最初の1枚のみをモデルに入力させることにした．
-画像は事前学習済みVGG19モデルに入力し，1つの画像に対して1つの300次元のベクトルが抽出され，ニュース分類器に渡す形となった．
+手法の複雑化を避けるため，1つの投稿に複数枚画像が付加されていた場合は最初の1枚のみを手法に入力させることにした．
+画像は事前学習済みVGG19手法に入力し，1つの画像に対して1つの300次元のベクトルが抽出され，ニュース分類器に渡す形となった．
 本来のVGG19は最終層にて1000次元のベクトルを出力するが，最終層のみ改変して300次元のベクトルが出力されるようにした．
 また前記の通り過学習を避けるために最終層を除き事前学習済みの状態を維持させることにした．
 ニュース分類器とエポック数，そしてEarly stoppingの条件は上記Textと同一であった．
@@ -75,10 +75,10 @@ Imageは，同じ画像に対して複数の投稿があったため，他2手�
 各カテゴリの指標を先に算出してから3カテゴリの平均をとるマクロ平均を評価に使うことにした．
 
 \section{実験結果}
-4モデルに対して10分割交差検定を行った結果が以下の表\ref{table:result}の通りである．
+4手法に対して10分割交差検定を行った結果が以下の表\ref{table:result}の通りである．
 % 
 \begin{table}[h]
-    \caption{各モデルの分類成果(マクロ平均)}
+    \caption{各手法の分類成果(マクロ平均)}
     \label{table:result}
     \centering
     \begin{tabular}{clll}
@@ -96,3 +96,67 @@ Imageは，同じ画像に対して複数の投稿があったため，他2手�
 この結果を見ると，提案手法が他2手法と比べて非常に高い分類成果を挙げたことが読み取れた．
 また，比較対象手法内で比べると画像単体の方が分類成果が良好である点もみられた．
 
+また，各手法におけるカテゴリ毎の結果は以下の表\ref{table:detail}の通りである．
+\begin{table}[ht]
+    \caption{各手法におけるカテゴリ毎の分類成果}
+    \label{table:detail}
+    \begin{subtable}{.48\textwidth}
+        \centering
+        \label{table:text}
+        \caption{Text}
+        \begin{tabular}{clll}
+            \hline
+            カテゴリ & Precision & Recall & F値 \\
+            \hline \hline
+            Real & 0.5215 & 0.3125 & 0.3818 \\
+            Fake & 0.5233 & 0.8510 & 0.6445 \\
+            Joke & 0.2660 & 0.0333 & 0.0586 \\
+            \hline
+        \end{tabular}
+    \end{subtable}
+    \hfil
+    \begin{subtable}{.48\textwidth}
+        \centering
+        \label{table:image}
+        \caption{Image}
+        \begin{tabular}{clll}
+            \hline
+            カテゴリ & Precision & Recall & F値 \\
+            \hline \hline
+            Real & 0.6554 & 0.7934 & 0.7121 \\
+            Fake & 0.5657 & 0.5657 & 0.5610 \\
+            Joke & 0.2727 & 0.1659 & 0.1923 \\
+            \hline
+        \end{tabular}
+    \end{subtable}
+    \\
+    \begin{subtable}{.48\textwidth}
+        \centering
+        \label{table:proposedA}
+        \caption{Image}
+        \begin{tabular}{clll}
+            \hline
+            カテゴリ & Precision & Recall & F値 \\
+            \hline \hline
+            Real & 0.9873 & 0.9745 & 0.9803 \\
+            Fake & 0.9357 & 0.9426 & 0.9381 \\
+            Joke & 0.8573 & 0.8662 & 0.8558 \\
+            \hline
+        \end{tabular}
+    \end{subtable}
+    \hfil
+    \begin{subtable}{.48\textwidth}
+        \centering
+        \label{table:proposedB}
+        \caption{Image}
+        \begin{tabular}{clll}
+            \hline
+            カテゴリ & Precision & Recall & F値 \\
+            \hline \hline
+            Real & 0.9884 & 0.9882 & 0.9879 \\
+            Fake & 0.9450 & 0.9309 & 0.9365 \\
+            Joke & 0.8589 & 0.8881 & 0.8653 \\
+            \hline
+        \end{tabular}
+    \end{subtable}
+\end{table}
