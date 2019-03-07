@@ -12,6 +12,7 @@
 \usepackage{setspace}
 \usepackage{multirow}
 \usepackage{here}
+\usepackage{geometry}
 
 \usepackage{amsmath,amssymb}
 \usepackage{bm}
@@ -24,6 +25,10 @@
 
 \usepackage{algorithm}
 \usepackage{algorithmic}
+
+\usepackage{bxwareki}
+\usepackage{okumacro}
+
 %
 \setcounter{tocdepth}{3}
 %
@@ -46,7 +51,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\title{タイトル}
 %\author{氏名}
-%\date{\today}
+\date{\today}
 \begin{document}
 %
 %\maketitle
@@ -60,7 +65,7 @@
 
     \vspace{40truemm}
 
-    \LARGE{\textbf{画像付きフェイクニュースとジョークニュースの\\検出・分類に向けた機械学習モデルの検討}}\\
+    \LARGE{\textbf{画像付きフェイクニュースとジョークニュースの\\検出・分類に向けた機械学習手法の検討}}\\
 
     \vspace{30truemm}
 
@@ -78,7 +83,7 @@
             \large{主任指導教員}&\large{:}&\large{田原 康之 准教授} \vspace{5truemm} \\
             \large{指導教員}&\large{:}&\large{大須賀 昭彦 教授} \vspace{5truemm} \\
             \large{指導教員}&\large{:}&\large{清 雄一 准教授} \vspace{5truemm} \\
-            \large{提出年月日}&\large{:}&\large{平成31年2月8日(金)} \\
+            \large{提出年月日}&\large{:}&\large{\warekitoday(\曜)} \\
         \end{tabular}
     \end{table*}
   \end{center}
@@ -100,10 +105,11 @@
 \include{chapters/conclusion}
 
 %謝辞
-%\include{./chapters/thanks}
+\include{./chapters/thanks}
 
 %参考文献
 \newpage
+\addcontentsline{toc}{chapter}{参考文献}
 \printbibliography[title=参考文献]
 
 %付録
